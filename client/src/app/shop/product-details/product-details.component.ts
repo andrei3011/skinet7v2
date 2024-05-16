@@ -32,6 +32,7 @@ export class ProductDetailsComponent implements OnInit {
         this.bcService.set('@productDetails', this.product.name);
         this.basketService.basketSource$.pipe(take(1)).subscribe({
           next: basket => {
+            console.log(basket);
             const item = basket?.items.find(x => x.id === +id);
             if (item) {
               this.quantity = item.quantity;

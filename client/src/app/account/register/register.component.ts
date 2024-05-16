@@ -35,15 +35,12 @@ export class RegisterComponent {
         debounceTime(1000),
         take(1),
         switchMap(() => {
-          console.log("switchMap", control)
           return this.accountService.checkEmailExists(control.value).pipe(
             map(result => {
-              console.log("map", result, control.errors)
               return result ? { emailExists: true } : null;
             }),
             finalize(() => {
-              console.log("finalize", control.errors)
-              control.markAsTouched()
+              control.markAsTouched();
             })
           );
         })
